@@ -15,8 +15,9 @@ Data inverter;
  y = TransientPt;
 run;
 
+/* SLR Model */
 Proc GLM data=inverter plots=diagnostics;
-	model y = x1 x5;
+	model y = x1 x2 x3 x4 x5;
 run;
 
 /* Indicator Model */
@@ -25,7 +26,7 @@ Proc GLM data=inverter plots=diagnostics;
 	model y = x1 x2 x3 x4 x5 x1*x5 x2*x5 x3*x5 x4*x5 / solution;
 run;
 
-/* Interaction Model */
+/* Interaction Models */
 Proc GLM data=inverter plots=diagnostics;
 	class x5;
 	model y = x2 x3 x5 x2*x5 x3*x5 x2*x3*x5 / solution;
